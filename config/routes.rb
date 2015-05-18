@@ -1,15 +1,21 @@
 Rails.application.routes.draw do
-
-  resources :votes, only: [:create]
-  resources :users, only: [:show]
-  resources :polls
-  root to: 'polls#index'
-
+  
+  resources :polls do
+    resources :questions
+    resources :replies, only: [ :new, :create ]
+  end     # example ->  /polls/1/questions
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+
+  root 'polls#index'
+
+  #////////////////
+  # WARNING: WHEN MERGING YOUR APP MAKE SURE TO CHANGE THE ABOVE
+  #////////////////
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

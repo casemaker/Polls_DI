@@ -1,0 +1,15 @@
+%h1 Listing polls
+
+%ul
+  -@polls.each do |poll|
+    %li
+      = link_to poll.title, poll
+      %ul
+      = link_to 'Edit', edit_poll_path(poll), class: "btn btn-default btn-xs"
+      = link_to 'Add question', new_poll_question_path(poll), class: "btn btn-default btn-xs"
+      = link_to 'Answer', new_poll_reply_path(poll), class: "btn btn-default btn-xs"
+      \|
+      = link_to 'Destroy', poll, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs"
+
+
+%p= link_to 'New Poll', new_poll_path, class: "btn btn-primary"
